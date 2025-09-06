@@ -1,8 +1,6 @@
-# Personal React Template
+# Subscription Tracker (Frontend)
 
-Modern **React + Vite + TypeScript** starter with **TanStack Router**, **TanStack Query**, **Tailwind v4**, **shadcn/ui**.
-
-## Features
+## Tech Stack
 
 - Vite + React 19 + TS 5
 - TanStack Router & Query
