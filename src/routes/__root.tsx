@@ -19,6 +19,14 @@ export const Route = createRootRouteWithContext<{
   ssr: false,
   beforeLoad: async ({ context }) => {
     try {
+      const user = context.queryClient.getQueryState(useProfileQuery.getKey())
+
+      if (user?.error) {
+        return {
+          user: context.user,
+        }
+      }
+
       const { payload } = await context.queryClient.ensureQueryData(useProfileQuery.getFetchOptions())
 
       return {
