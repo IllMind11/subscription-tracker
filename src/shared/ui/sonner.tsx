@@ -10,6 +10,7 @@ function Toaster({ ...props }: ToasterProps) {
       theme={theme as ToasterProps['theme']}
       // eslint-disable-next-line better-tailwindcss/no-unregistered-classes
       className="toaster group"
+      richColors
       style={
         {
           '--normal-bg': 'var(--popover)',

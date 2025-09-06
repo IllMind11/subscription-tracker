@@ -25,7 +25,7 @@ export const Route = createFileRoute('/auth/signup')({
 const formSchema = z.object({
   username: z.string().min(3, 'Имя должно быть не менее 3 символов'),
   email: z.email(),
-  password: z.string().min(5, 'Пароль должен быть не менее 5 символов'),
+  password: z.string().min(6, 'Пароль должен быть не менее 5 символов'),
 })
 
 function RouteComponent() {

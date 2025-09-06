@@ -1,6 +1,6 @@
 import { Link, useRouteContext } from '@tanstack/react-router'
 
-import { Home } from 'lucide-react'
+import { Home, ListTree } from 'lucide-react'
 import { Logo } from '~/shared/ui/logo'
 import {
   Sidebar,
@@ -17,9 +17,14 @@ import { NavUser } from './nav-user'
 
 const items = [
   {
-    title: 'Home',
+    title: 'Подписки',
     url: '/dashboard',
     icon: Home,
+  },
+  {
+    title: 'Категории',
+    url: '/dashboard/categories',
+    icon: ListTree,
   },
 ]
 
