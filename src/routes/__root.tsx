@@ -1,19 +1,34 @@
 /// <reference types="vite/client" />
 import type { QueryClient } from '@tanstack/react-query'
+import type { IUser } from '~/shared/types'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { createRootRouteWithContext, HeadContent, Scripts } from '@tanstack/react-router'
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
 import * as React from 'react'
 import { DefaultCatchBoundary, ThemeProvider } from '~/app/providers'
 import appCss from '~/app/styles/app.css?url'
+import { useProfileQuery } from '~/shared/api'
 import { seo } from '~/shared/lib/seo'
 import { NotFound } from '~/shared/ui/not-found'
 import { Toaster } from '~/shared/ui/sonner'
 
 export const Route = createRootRouteWithContext<{
   queryClient: QueryClient
-  user: any
+  user: IUser | null
 }>()({
+  ssr: false,
+  beforeLoad: async ({ context }) => {
+    try {
+      const { payload } = await context.queryClient.ensureQueryData(useProfileQuery.getFetchOptions())
+
+      return {
+        user: payload,
+      }
+    }
+    catch (error) {
+      console.error(error)
+    }
+  },
   head: () => ({
     meta: [
       {

@@ -1,8 +1,9 @@
 import type { VariantProps } from 'class-variance-authority'
 import { cva } from 'class-variance-authority'
-import { Slot as SlotPrimitive } from 'radix-ui'
+import { Slot } from 'radix-ui'
 import * as React from 'react'
-import { cn } from '~/shared/lib/cn'
+import { cn } from '../lib/cn'
+import { Spinner } from './spinner'
 
 const buttonVariants = cva(
   `
@@ -80,19 +81,27 @@ function Button({
   variant,
   size,
   asChild = false,
+  isLoading,
+  children,
   ...props
 }: React.ComponentProps<'button'>
   & VariantProps<typeof buttonVariants> & {
     asChild?: boolean
+    isLoading?: boolean
   }) {
-  const Comp = asChild ? SlotPrimitive.Slot : 'button'
+  const Comp = asChild ? Slot.Slot : 'button'
+
+  const disabled = isLoading || props.disabled
 
   return (
     <Comp
       data-slot="button"
       className={cn(buttonVariants({ variant, size, className }))}
+      disabled={disabled}
       {...props}
-    />
+    >
+      {isLoading ? <Spinner variant="secondary" /> : children}
+    </Comp>
   )
 }
 

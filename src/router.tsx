@@ -4,12 +4,14 @@ import { setupRouterSsrQueryIntegration } from '@tanstack/react-router-ssr-query
 import { DefaultCatchBoundary } from './app/providers'
 import { routeTree } from './routeTree.gen'
 import { NotFound } from './shared/ui/not-found'
+import { Spinner } from './shared/ui/spinner'
 
 export function createRouter() {
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
         refetchOnWindowFocus: false,
+        retry: false,
       },
     },
   })
@@ -20,10 +22,14 @@ export function createRouter() {
       queryClient,
       user: null,
     },
-    defaultPreload: 'intent',
     defaultPreloadStaleTime: 0,
     defaultErrorComponent: DefaultCatchBoundary,
     defaultNotFoundComponent: () => <NotFound />,
+    defaultPendingComponent: () => (
+      <div className="flex min-h-screen items-center justify-center">
+        <Spinner size="lg" />
+      </div>
+    ),
     scrollRestoration: true,
   })
 
