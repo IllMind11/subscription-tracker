@@ -24,7 +24,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~
 import { Textarea } from '~/shared/ui/textarea'
 
 const formSchema = z.object({
-  image: z.instanceof(File),
+  image: z.instanceof(File).nullable(),
   billing_period: z.literal(['1', '2', '3', '4']),
   category_id: z.string(),
   currency: z.string().min(1),
@@ -56,7 +56,7 @@ export function UpdateSubscription({
 
   const form = useForm({
     values: {
-      image: new File([''], 'filename'),
+      image: null,
       billing_period: subscription.billing_period.toString() as `${BillingPeriod}`,
       category_id: subscription.category_id.toString(),
       currency: subscription.currency,
@@ -117,6 +117,7 @@ export function UpdateSubscription({
           setIsOpen(false)
           setPreview(null)
           form.reset()
+          form.resetField('image')
         },
         onError: () => {
           toast.error('Категория не должна дублироваться')
@@ -124,7 +125,7 @@ export function UpdateSubscription({
       })
     }
 
-    if (data.image) {
+    if (data.image?.name) {
       uploadImage({
         file: data.image,
       }, {
