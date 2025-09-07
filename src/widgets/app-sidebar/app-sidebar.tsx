@@ -37,7 +37,7 @@ export function AppSidebar() {
       title: 'Категории',
       url: '/dashboard/categories',
       icon: ListTree,
-      items: categories?.payload.map(category => ({
+      items: categories?.payload?.map(category => ({
         title: category.name,
         url: `/dashboard/categories/${category.id}`,
       })),

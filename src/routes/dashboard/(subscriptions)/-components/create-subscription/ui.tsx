@@ -10,6 +10,7 @@ import z from 'zod'
 import { CreateCategory } from '~/features/create-category'
 import { useCategoriesQuery } from '~/shared/api'
 import { useUploadImageMutation } from '~/shared/api/images'
+import { useStatisticsQuery } from '~/shared/api/statistics'
 import { useCreateSubscriptionMutation, useGetSubscriptionsQuery } from '~/shared/api/subscriptions'
 import { cn } from '~/shared/lib/cn'
 import { Button } from '~/shared/ui/button'
@@ -97,6 +98,10 @@ export function CreateSubscription() {
           queryClient.invalidateQueries({
             queryKey: useGetSubscriptionsQuery.getKey(),
           })
+          queryClient.resetQueries({
+            queryKey: useStatisticsQuery.getKey(),
+          })
+
           setIsOpen(false)
           setPreview(null)
           form.reset()

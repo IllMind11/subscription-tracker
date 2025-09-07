@@ -4,8 +4,17 @@ import { useStatisticsQuery } from '~/shared/api/statistics'
 import { Card, CardContent, CardHeader, CardTitle } from '~/shared/ui/card'
 import { CycleBarChart } from './-components'
 
+function errorComponent() {
+  return (
+    <div className="flex min-h-screen items-center justify-center">
+      <p>Здесь еще пусто</p>
+    </div>
+  )
+}
+
 export const Route = createFileRoute('/dashboard/statistics/')({
   component: RouteComponent,
+  errorComponent,
 })
 
 function RouteComponent() {
