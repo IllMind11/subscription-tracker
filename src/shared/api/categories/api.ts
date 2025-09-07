@@ -28,3 +28,8 @@ export const useUpdateCategoryMutation = createMutation({
       },
     }).json(),
 })
+
+export const useActiveCategoriesQuery = createSuspenseQuery({
+  queryKey: ['active-categories'],
+  fetcher: () => httpClient.get<IResponse<ICategory[]>>('category/active').json(),
+})

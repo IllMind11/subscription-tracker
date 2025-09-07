@@ -1,4 +1,4 @@
-import type { ICreateSubscriptionPayload, ISubscriptionsResponse, IUpdateSubscriptionPayload } from './types'
+import type { ICreateSubscriptionPayload, IGetSubscriptionsParams, ISubscriptionsResponse, IUpdateSubscriptionPayload } from './types'
 import type { IResponse } from '~/shared/types'
 import { createMutation, createSuspenseQuery } from 'react-query-kit'
 import { httpClient } from '~/shared/lib/http-client'
@@ -12,7 +12,12 @@ export const useCreateSubscriptionMutation = createMutation({
 
 export const useGetSubscriptionsQuery = createSuspenseQuery({
   queryKey: ['subscriptions'],
-  fetcher: () => httpClient.get<IResponse<ISubscriptionsResponse>>('subscription').json(),
+  fetcher: (params: IGetSubscriptionsParams) =>
+    httpClient.get<IResponse<ISubscriptionsResponse>>('subscription', {
+      searchParams: {
+        ...(params?.category_id ? { category_id: params.category_id } : {}),
+      },
+    }).json(),
 })
 
 export const useDeleteSubscriptionMutation = createMutation({
