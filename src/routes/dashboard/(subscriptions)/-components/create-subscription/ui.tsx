@@ -7,6 +7,7 @@ import { useDropzone } from 'react-dropzone'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import z from 'zod'
+import { CreateCategory } from '~/features/create-category'
 import { useCategoriesQuery } from '~/shared/api'
 import { useUploadImageMutation } from '~/shared/api/images'
 import { useCreateSubscriptionMutation, useGetSubscriptionsQuery } from '~/shared/api/subscriptions'
@@ -246,7 +247,16 @@ export function CreateSubscription() {
                   name="category_id"
                   render={({ field }) => (
                     <FormItem className="w-full">
-                      <FormLabel>Категория</FormLabel>
+                      <FormLabel className={`
+                        flex items-center justify-between gap-2
+                      `}
+                      >
+                        <span>Категория</span>
+
+                        <CreateCategory>
+                          <button type="button" className="text-xs">+ Создать</button>
+                        </CreateCategory>
+                      </FormLabel>
                       <Select onValueChange={field.onChange} defaultValue={field.value?.toString()}>
                         <FormControl>
                           <SelectTrigger className="w-full">

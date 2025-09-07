@@ -47,7 +47,21 @@ function RouteComponent() {
             </svg>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{statistics.payload.total_monthly_spending}</div>
+            <div className="text-lg font-bold">
+              {statistics.payload.total_monthly_spending.map(t => (
+                <p key={t.amount}>
+                  <span>
+                    {t.currency}
+                    :
+                    {' '}
+                  </span>
+
+                  <span>
+                    {t.amount}
+                  </span>
+                </p>
+              ))}
+            </div>
           </CardContent>
         </Card>
         <Card>
@@ -72,7 +86,21 @@ function RouteComponent() {
             </svg>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{statistics.payload.total_yearly_spending}</div>
+            <div className="text-lg font-bold">
+              {statistics.payload.total_yearly_spending.map(t => (
+                <p key={t.amount}>
+                  <span>
+                    {t.currency}
+                    :
+                    {' '}
+                  </span>
+
+                  <span>
+                    {t.amount}
+                  </span>
+                </p>
+              ))}
+            </div>
           </CardContent>
         </Card>
         <Card>

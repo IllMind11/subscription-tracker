@@ -17,9 +17,15 @@ export interface IStatistics {
     count: number
     period_name: string
   }[]
-  total_monthly_spending: number
+  total_monthly_spending: {
+    currency: string
+    amount: number
+  }[]
   total_subscriptions: number
-  total_yearly_spending: number
+  total_yearly_spending: {
+    currency: string
+    amount: number
+  }[]
   upcoming_renewals: {
     category_name: string
     currency: string
