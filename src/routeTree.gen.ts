@@ -12,11 +12,11 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as DashboardRouteRouteImport } from './routes/dashboard/route'
 import { Route as AuthRouteRouteImport } from './routes/auth/route'
 import { Route as landingRouteRouteImport } from './routes/(landing)/route'
-import { Route as DashboardIndexRouteImport } from './routes/dashboard/index'
 import { Route as landingIndexRouteImport } from './routes/(landing)/index'
 import { Route as AuthSignupRouteImport } from './routes/auth/signup'
 import { Route as AuthSigninRouteImport } from './routes/auth/signin'
 import { Route as DashboardCategoriesIndexRouteImport } from './routes/dashboard/categories/index'
+import { Route as DashboardsubscriptionsIndexRouteImport } from './routes/dashboard/(subscriptions)/index'
 
 const DashboardRouteRoute = DashboardRouteRouteImport.update({
   id: '/dashboard',
@@ -31,11 +31,6 @@ const AuthRouteRoute = AuthRouteRouteImport.update({
 const landingRouteRoute = landingRouteRouteImport.update({
   id: '/(landing)',
   getParentRoute: () => rootRouteImport,
-} as any)
-const DashboardIndexRoute = DashboardIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => DashboardRouteRoute,
 } as any)
 const landingIndexRoute = landingIndexRouteImport.update({
   id: '/',
@@ -58,6 +53,12 @@ const DashboardCategoriesIndexRoute =
     path: '/categories/',
     getParentRoute: () => DashboardRouteRoute,
   } as any)
+const DashboardsubscriptionsIndexRoute =
+  DashboardsubscriptionsIndexRouteImport.update({
+    id: '/(subscriptions)/',
+    path: '/',
+    getParentRoute: () => DashboardRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof landingIndexRoute
@@ -65,7 +66,7 @@ export interface FileRoutesByFullPath {
   '/dashboard': typeof DashboardRouteRouteWithChildren
   '/auth/signin': typeof AuthSigninRoute
   '/auth/signup': typeof AuthSignupRoute
-  '/dashboard/': typeof DashboardIndexRoute
+  '/dashboard/': typeof DashboardsubscriptionsIndexRoute
   '/dashboard/categories': typeof DashboardCategoriesIndexRoute
 }
 export interface FileRoutesByTo {
@@ -73,7 +74,7 @@ export interface FileRoutesByTo {
   '/auth/signin': typeof AuthSigninRoute
   '/auth/signup': typeof AuthSignupRoute
   '/': typeof landingIndexRoute
-  '/dashboard': typeof DashboardIndexRoute
+  '/dashboard': typeof DashboardsubscriptionsIndexRoute
   '/dashboard/categories': typeof DashboardCategoriesIndexRoute
 }
 export interface FileRoutesById {
@@ -84,7 +85,7 @@ export interface FileRoutesById {
   '/auth/signin': typeof AuthSigninRoute
   '/auth/signup': typeof AuthSignupRoute
   '/(landing)/': typeof landingIndexRoute
-  '/dashboard/': typeof DashboardIndexRoute
+  '/dashboard/(subscriptions)/': typeof DashboardsubscriptionsIndexRoute
   '/dashboard/categories/': typeof DashboardCategoriesIndexRoute
 }
 export interface FileRouteTypes {
@@ -113,7 +114,7 @@ export interface FileRouteTypes {
     | '/auth/signin'
     | '/auth/signup'
     | '/(landing)/'
-    | '/dashboard/'
+    | '/dashboard/(subscriptions)/'
     | '/dashboard/categories/'
   fileRoutesById: FileRoutesById
 }
@@ -146,13 +147,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof landingRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/dashboard/': {
-      id: '/dashboard/'
-      path: '/'
-      fullPath: '/dashboard/'
-      preLoaderRoute: typeof DashboardIndexRouteImport
-      parentRoute: typeof DashboardRouteRoute
-    }
     '/(landing)/': {
       id: '/(landing)/'
       path: '/'
@@ -179,6 +173,13 @@ declare module '@tanstack/react-router' {
       path: '/categories'
       fullPath: '/dashboard/categories'
       preLoaderRoute: typeof DashboardCategoriesIndexRouteImport
+      parentRoute: typeof DashboardRouteRoute
+    }
+    '/dashboard/(subscriptions)/': {
+      id: '/dashboard/(subscriptions)/'
+      path: '/'
+      fullPath: '/dashboard/'
+      preLoaderRoute: typeof DashboardsubscriptionsIndexRouteImport
       parentRoute: typeof DashboardRouteRoute
     }
   }
@@ -211,12 +212,12 @@ const AuthRouteRouteWithChildren = AuthRouteRoute._addFileChildren(
 )
 
 interface DashboardRouteRouteChildren {
-  DashboardIndexRoute: typeof DashboardIndexRoute
+  DashboardsubscriptionsIndexRoute: typeof DashboardsubscriptionsIndexRoute
   DashboardCategoriesIndexRoute: typeof DashboardCategoriesIndexRoute
 }
 
 const DashboardRouteRouteChildren: DashboardRouteRouteChildren = {
-  DashboardIndexRoute: DashboardIndexRoute,
+  DashboardsubscriptionsIndexRoute: DashboardsubscriptionsIndexRoute,
   DashboardCategoriesIndexRoute: DashboardCategoriesIndexRoute,
 }
 

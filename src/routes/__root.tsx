@@ -4,6 +4,8 @@ import type { IUser } from '~/shared/types'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { createRootRouteWithContext, HeadContent, Scripts } from '@tanstack/react-router'
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
+import { setDefaultOptions } from 'date-fns'
+import { ru } from 'date-fns/locale'
 import * as React from 'react'
 import { DefaultCatchBoundary, ThemeProvider } from '~/app/providers'
 import appCss from '~/app/styles/app.css?url'
@@ -11,6 +13,8 @@ import { useProfileQuery } from '~/shared/api'
 import { seo } from '~/shared/lib/seo'
 import { NotFound } from '~/shared/ui/not-found'
 import { Toaster } from '~/shared/ui/sonner'
+
+setDefaultOptions({ locale: ru })
 
 export const Route = createRootRouteWithContext<{
   queryClient: QueryClient

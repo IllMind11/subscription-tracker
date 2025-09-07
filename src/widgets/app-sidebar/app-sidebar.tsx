@@ -48,6 +48,9 @@ export function AppSidebar() {
                   <SidebarMenuButton asChild>
                     <Link
                       to={item.url}
+                      activeOptions={{
+                        exact: true,
+                      }}
                       activeProps={{
                         className: 'bg-sidebar-accent text-sidebar-accent-foreground',
                       }}
