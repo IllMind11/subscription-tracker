@@ -15,6 +15,8 @@ export const Route = createFileRoute('/auth')({
           token: search.token,
         })
 
+        localStorage.setItem('token', search.token)
+
         throw redirect({
           to: '/dashboard',
         })
