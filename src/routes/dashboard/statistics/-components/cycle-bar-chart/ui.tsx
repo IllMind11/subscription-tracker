@@ -41,7 +41,14 @@ const chartConfig = {
   },
 } satisfies ChartConfig
 
+const colors = ['var(--chart-1)', 'var(--chart-2)', 'var(--chart-3)', 'var(--chart-4)', 'var(--chart-5)']
+
 export function CycleBarChart({ statistics }: { statistics: IStatistics }) {
+  const chartData = statistics.subscriptions_by_period.map((p, index) => ({
+    ...p,
+    fill: colors[index],
+  }))
+
   return (
     <Card className="mt-5 flex flex-col">
       <CardHeader className="items-center pb-0">
@@ -58,7 +65,7 @@ export function CycleBarChart({ statistics }: { statistics: IStatistics }) {
               cursor={false}
               content={<ChartTooltipContent hideLabel />}
             />
-            <Pie data={statistics.subscriptions_by_period} dataKey="count" nameKey="period_name" />
+            <Pie data={chartData} dataKey="count" nameKey="period_name" />
           </PieChart>
         </ChartContainer>
       </CardContent>
