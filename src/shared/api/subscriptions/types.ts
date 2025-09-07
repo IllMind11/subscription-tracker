@@ -1,9 +1,12 @@
 import type { BillingPeriod } from '~/shared/types'
 
 export type SubscriptionStatus = 'active' | 'paused' | 'cancelled'
+export type SubscriptionSort = 'created_at' | 'price' | 'date'
 
 export interface IGetSubscriptionsParams {
   category_id?: number
+  sort?: SubscriptionSort
+  billing_period?: BillingPeriod
 }
 
 export interface ICreateSubscriptionPayload {

@@ -16,6 +16,8 @@ export const useGetSubscriptionsQuery = createSuspenseQuery({
     httpClient.get<IResponse<ISubscriptionsResponse>>('subscription', {
       searchParams: {
         ...(params?.category_id ? { category_id: params.category_id } : {}),
+        ...(params?.sort ? { sort: params.sort } : {}),
+        ...(params?.billing_period ? { billing_period: params.billing_period } : {}),
       },
     }).json(),
 })
