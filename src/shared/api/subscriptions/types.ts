@@ -7,6 +7,8 @@ export interface IGetSubscriptionsParams {
   category_id?: number
   sort?: SubscriptionSort
   billing_period?: BillingPeriod
+  limit?: number
+  page?: number
 }
 
 export interface ICreateSubscriptionPayload {

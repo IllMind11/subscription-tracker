@@ -18,6 +18,8 @@ export const useGetSubscriptionsQuery = createSuspenseQuery({
         ...(params?.category_id ? { category_id: params.category_id } : {}),
         ...(params?.sort ? { sort: params.sort } : {}),
         ...(params?.billing_period ? { billing_period: params.billing_period } : {}),
+        ...(params?.limit ? { limit: params.limit } : {}),
+        ...(params?.page ? { page: params.page } : {}),
       },
     }).json(),
 })
