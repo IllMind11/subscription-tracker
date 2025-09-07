@@ -115,6 +115,7 @@ export function UpdateSubscription({
             queryKey: useGetSubscriptionsQuery.getKey(),
           })
           setIsOpen(false)
+          setPreview(null)
           form.reset()
         },
         onError: () => {

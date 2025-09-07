@@ -97,6 +97,7 @@ export function CreateSubscription() {
             queryKey: useGetSubscriptionsQuery.getKey(),
           })
           setIsOpen(false)
+          setPreview(null)
           form.reset()
         },
         onError: () => {

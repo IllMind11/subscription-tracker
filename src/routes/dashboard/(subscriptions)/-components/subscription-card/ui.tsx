@@ -90,7 +90,7 @@ export function SubscriptionCard({ subscription }: { subscription: ISubscription
               Следующий платеж в
               {' '}
 
-              <span className="font-semibold">{format(new Date(subscription.next_billing_date), 'MM MMM YYY')}</span>
+              <span className="font-semibold">{format(new Date(subscription.next_billing_date), 'dd MMM YYY')}</span>
             </p>
           </div>
 
