@@ -113,7 +113,7 @@ export function AppSidebar() {
                         }}
                       >
                         <item.icon />
-                        <span>{item.title}</span>
+                        <span className="truncate">{item.title}</span>
                       </Link>
                     </SidebarMenuButton>
                     {item.items?.length
@@ -140,7 +140,9 @@ export function AppSidebar() {
                                           className: 'bg-sidebar-accent text-sidebar-accent-foreground',
                                         }}
                                       >
-                                        {subItem.title}
+                                        <span className="truncate">
+                                          {subItem.title}
+                                        </span>
                                       </Link>
                                     </SidebarMenuSubButton>
                                   </SidebarMenuSubItem>
