@@ -16,6 +16,7 @@ export const Route = createFileRoute('/auth')({
         })
 
         localStorage.setItem('token', search.token)
+        context.queryClient.resetQueries()
 
         throw redirect({
           to: '/dashboard',

@@ -34,8 +34,8 @@ export function NavUser({
   const queryClient = useQueryClient()
 
   function handleLogout() {
-    localStorage.removeItem('token')
     queryClient.resetQueries()
+    localStorage.removeItem('token')
     navigate({
       to: '/',
     })
