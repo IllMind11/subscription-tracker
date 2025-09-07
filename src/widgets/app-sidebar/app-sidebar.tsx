@@ -1,6 +1,5 @@
 import { Link, useRouteContext } from '@tanstack/react-router'
-
-import { ChevronRight, Home, ListTree } from 'lucide-react'
+import { ChevronRight, Home, ListTree, PieChart } from 'lucide-react'
 import { useActiveCategoriesQuery } from '~/shared/api'
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '~/shared/ui/collapsible'
 import { Logo } from '~/shared/ui/logo'
@@ -42,6 +41,11 @@ export function AppSidebar() {
         title: category.name,
         url: `/dashboard/categories/${category.id}`,
       })),
+    },
+    {
+      title: 'Статистика',
+      url: '/dashboard/statistics',
+      icon: PieChart,
     },
   ]
 

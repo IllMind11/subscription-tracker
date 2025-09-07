@@ -27,6 +27,7 @@ export function CreateCategory({
     defaultValues: {
       name: '',
     },
+
     resolver: zodResolver(formSchema),
   })
 

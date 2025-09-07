@@ -15,6 +15,7 @@ import { Route as landingRouteRouteImport } from './routes/(landing)/route'
 import { Route as landingIndexRouteImport } from './routes/(landing)/index'
 import { Route as AuthSignupRouteImport } from './routes/auth/signup'
 import { Route as AuthSigninRouteImport } from './routes/auth/signin'
+import { Route as DashboardStatisticsIndexRouteImport } from './routes/dashboard/statistics/index'
 import { Route as DashboardCategoriesIndexRouteImport } from './routes/dashboard/categories/index'
 import { Route as DashboardsubscriptionsIndexRouteImport } from './routes/dashboard/(subscriptions)/index'
 import { Route as DashboardCategoriesCategoryIdRouteImport } from './routes/dashboard/categories/$categoryId'
@@ -48,6 +49,12 @@ const AuthSigninRoute = AuthSigninRouteImport.update({
   path: '/signin',
   getParentRoute: () => AuthRouteRoute,
 } as any)
+const DashboardStatisticsIndexRoute =
+  DashboardStatisticsIndexRouteImport.update({
+    id: '/statistics/',
+    path: '/statistics/',
+    getParentRoute: () => DashboardRouteRoute,
+  } as any)
 const DashboardCategoriesIndexRoute =
   DashboardCategoriesIndexRouteImport.update({
     id: '/categories/',
@@ -76,6 +83,7 @@ export interface FileRoutesByFullPath {
   '/dashboard/categories/$categoryId': typeof DashboardCategoriesCategoryIdRoute
   '/dashboard/': typeof DashboardsubscriptionsIndexRoute
   '/dashboard/categories': typeof DashboardCategoriesIndexRoute
+  '/dashboard/statistics': typeof DashboardStatisticsIndexRoute
 }
 export interface FileRoutesByTo {
   '/auth': typeof AuthRouteRouteWithChildren
@@ -85,6 +93,7 @@ export interface FileRoutesByTo {
   '/dashboard/categories/$categoryId': typeof DashboardCategoriesCategoryIdRoute
   '/dashboard': typeof DashboardsubscriptionsIndexRoute
   '/dashboard/categories': typeof DashboardCategoriesIndexRoute
+  '/dashboard/statistics': typeof DashboardStatisticsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -97,6 +106,7 @@ export interface FileRoutesById {
   '/dashboard/categories/$categoryId': typeof DashboardCategoriesCategoryIdRoute
   '/dashboard/(subscriptions)/': typeof DashboardsubscriptionsIndexRoute
   '/dashboard/categories/': typeof DashboardCategoriesIndexRoute
+  '/dashboard/statistics/': typeof DashboardStatisticsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -109,6 +119,7 @@ export interface FileRouteTypes {
     | '/dashboard/categories/$categoryId'
     | '/dashboard/'
     | '/dashboard/categories'
+    | '/dashboard/statistics'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/auth'
@@ -118,6 +129,7 @@ export interface FileRouteTypes {
     | '/dashboard/categories/$categoryId'
     | '/dashboard'
     | '/dashboard/categories'
+    | '/dashboard/statistics'
   id:
     | '__root__'
     | '/(landing)'
@@ -129,6 +141,7 @@ export interface FileRouteTypes {
     | '/dashboard/categories/$categoryId'
     | '/dashboard/(subscriptions)/'
     | '/dashboard/categories/'
+    | '/dashboard/statistics/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -180,6 +193,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/auth/signin'
       preLoaderRoute: typeof AuthSigninRouteImport
       parentRoute: typeof AuthRouteRoute
+    }
+    '/dashboard/statistics/': {
+      id: '/dashboard/statistics/'
+      path: '/statistics'
+      fullPath: '/dashboard/statistics'
+      preLoaderRoute: typeof DashboardStatisticsIndexRouteImport
+      parentRoute: typeof DashboardRouteRoute
     }
     '/dashboard/categories/': {
       id: '/dashboard/categories/'
@@ -235,12 +255,14 @@ interface DashboardRouteRouteChildren {
   DashboardCategoriesCategoryIdRoute: typeof DashboardCategoriesCategoryIdRoute
   DashboardsubscriptionsIndexRoute: typeof DashboardsubscriptionsIndexRoute
   DashboardCategoriesIndexRoute: typeof DashboardCategoriesIndexRoute
+  DashboardStatisticsIndexRoute: typeof DashboardStatisticsIndexRoute
 }
 
 const DashboardRouteRouteChildren: DashboardRouteRouteChildren = {
   DashboardCategoriesCategoryIdRoute: DashboardCategoriesCategoryIdRoute,
   DashboardsubscriptionsIndexRoute: DashboardsubscriptionsIndexRoute,
   DashboardCategoriesIndexRoute: DashboardCategoriesIndexRoute,
+  DashboardStatisticsIndexRoute: DashboardStatisticsIndexRoute,
 }
 
 const DashboardRouteRouteWithChildren = DashboardRouteRoute._addFileChildren(
