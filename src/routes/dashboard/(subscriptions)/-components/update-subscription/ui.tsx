@@ -141,8 +141,14 @@ export function UpdateSubscription({
     }
   })
 
+  const handleOpenChange = (open: boolean) => {
+    form.reset()
+    setPreview(null)
+    setIsOpen(open)
+  }
+
   return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+    <Dialog open={isOpen} onOpenChange={handleOpenChange}>
       <DialogTrigger asChild>
         <Button variant="secondary">
           <PenBox className="h-5 w-5" />
